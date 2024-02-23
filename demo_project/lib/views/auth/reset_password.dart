@@ -31,12 +31,16 @@ class ResetPasswordScreen extends StatelessWidget {
                 label: 'Confirm Password',
               ),
               const SizedBox(height: 20),
-              LargeButton(
-                title: 'Reset Password',
-                onPress: () {
-                  // Reset Password
-                  controller.resetPassword();
-                },
+              Obx(
+                () => LargeButton(
+                  loading: controller.isLoading.value,
+                  title: 'Reset Password',
+                  onPress: () {
+                    controller.isLoading(true);
+                    // Reset Password
+                    controller.resetPassword();
+                  },
+                ),
               ),
               const SizedBox(height: 20),
               GestureDetector(

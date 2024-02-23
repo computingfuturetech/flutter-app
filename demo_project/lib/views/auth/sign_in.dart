@@ -41,7 +41,7 @@ class SignInScreen extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const ForgotPasswordScreen(),
@@ -54,11 +54,19 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              LargeButton(
-                title: 'Sign In',
-                onPress: () {
-                  controller.signIn();
-                },
+              Obx(
+                () => LargeButton(
+                  loading: controller.isLoading.value,
+                  title: 'Sign In',
+                  onPress: () async {
+                    controller.isLoading(true);
+                    await controller.signIn();
+                    // controller.isLoading.value
+                    //     ? Loader.show(context,
+                    //         progressIndicator: const CircularProgressIndicator())
+                    //     : Loader.hide();
+                  },
+                ),
               ),
               const SizedBox(
                 height: 20,

@@ -33,12 +33,16 @@ class ForgotPasswordScreen extends StatelessWidget {
                   textCapitalization: TextCapitalization.none,
                   autofocus: true),
               const SizedBox(height: 20),
-              LargeButton(
-                title: 'Send Email',
-                onPress: () {
-                  // Send email
-                  controller.sendPasswordResetEmail();
-                },
+              Obx(
+                () => LargeButton(
+                  loading: controller.isLoading.value,
+                  title: 'Send Email',
+                  onPress: () {
+                    // Send email
+                    controller.isLoading(true);
+                    controller.sendPasswordResetEmail();
+                  },
+                ),
               ),
               const SizedBox(height: 20),
               GestureDetector(

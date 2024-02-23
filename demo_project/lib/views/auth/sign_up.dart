@@ -45,11 +45,15 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
-              LargeButton(
-                title: 'Sign Up',
-                onPress: () {
-                  controller.signUp();
-                },
+              Obx(
+                () => LargeButton(
+                  loading: controller.isLoading.value,
+                  title: 'Sign Up',
+                  onPress: () {
+                    controller.isLoading(true);
+                    controller.signUp();
+                  },
+                ),
               ),
               const SizedBox(height: 20),
               GestureDetector(
