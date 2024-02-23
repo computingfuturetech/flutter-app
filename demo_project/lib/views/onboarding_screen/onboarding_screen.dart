@@ -82,7 +82,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       height: 10,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignInScreen()));
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey,
                         minimumSize: Size(size, 50),
@@ -91,7 +96,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ),
                       child: const Text(
-                        'Not Now',
+                        'Sign In',
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),

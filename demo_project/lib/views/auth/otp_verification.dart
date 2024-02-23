@@ -32,12 +32,16 @@ class OTPVerificationScreen extends StatelessWidget {
                   textCapitalization: TextCapitalization.none,
                   autofocus: true),
               const SizedBox(height: 20),
-              LargeButton(
-                title: 'Verify OTP',
-                onPress: () {
-                  // Verify OTP
-                  controller.verifyOTP();
-                },
+              Obx(
+                () => LargeButton(
+                  loading: controller.isLoading.value,
+                  title: 'Verify OTP',
+                  onPress: () {
+                    controller.isLoading(true);
+                    // Verify OTP
+                    controller.verifyOTP();
+                  },
+                ),
               ),
               const SizedBox(height: 20),
               GestureDetector(
